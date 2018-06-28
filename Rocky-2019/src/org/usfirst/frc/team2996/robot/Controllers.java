@@ -8,7 +8,7 @@ public class Controllers {
 	private double liftAxis;
 	private boolean liftHighGearBumper;
 	private double liftLowGearTrigger;
-	private double intakeTrigger;
+	private boolean intakeBumper;
 	private double outtakeTrigger;
 	private Toggle armButton;
 	private boolean armButtonOutput;
@@ -30,7 +30,7 @@ public class Controllers {
 		liftAxis = manipulatorController.getRawAxis(Constants.LIFT_AXIS);
 		liftHighGearBumper = manipulatorController.getRawButton(Constants.LIFT_HIGH_GEAR_BUMPER);
 		liftLowGearTrigger = manipulatorController.getRawAxis(Constants.LIFT_LOW_GEAR_TRIGGER);
-		intakeTrigger = manipulatorController.getRawAxis(Constants.INTAKE_TRIGGER);
+		intakeBumper = manipulatorController.getRawButton(Constants.INTAKE_BUMPER);
 		outtakeTrigger = manipulatorController.getRawAxis(Constants.OUTTAKE_TRIGGER);
 		armButtonOutput = armButton.toggle();
 		
@@ -52,8 +52,8 @@ public class Controllers {
 		return liftLowGearTrigger;
 	}
 
-	public double getIntakeTrigger() {
-		return intakeTrigger;
+	public boolean isIntakeBumper() {
+		return intakeBumper;
 	}
 
 	public double getOuttakeTrigger() {

@@ -17,7 +17,7 @@ public class StateRecorder {
 		s.setLiftAxisState(controllers.getLiftAxis());
 		s.setLiftHighGearBumperState(controllers.isLiftHighGearBumper());
 		s.setLiftLowGearTriggerState(controllers.getLiftLowGearTrigger());
-		s.setIntakeTriggerState(controllers.getIntakeTrigger());
+		s.setIntakeBumperState(controllers.isIntakeBumper());
 		s.setOuttakeTriggerState(controllers.getOuttakeTrigger());
 		s.setArmButtonOutputState(controllers.isArmButtonOutput());
 		

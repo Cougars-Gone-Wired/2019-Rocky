@@ -35,7 +35,7 @@ public class StateRunner {
 			State s = states.get(counter);
 
 			lift.liftFunctions(s.getLiftAxisState());
-			intake.intakeFunctions(s.getIntakeTriggerState(), s.getOuttakeTriggerState());
+			intake.intakeFunctions(s.isIntakeBumperState(), s.getOuttakeTriggerState());
 			arm.armFunctions(s.isArmButtonOutputState());
 			
 			drive.arcadeDrive(s.getDriveForwardAxisState(), s.getDriveTurnAxisState());

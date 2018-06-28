@@ -5,7 +5,7 @@ public class State {
 	private double liftAxisState;
 	private boolean liftHighGearBumperState;
 	private double liftLowGearTriggerState;
-	private double intakeTriggerState;
+	private boolean intakeBumperState;
 	private double outtakeTriggerState;
 	private boolean armButtonOutputState;
 
@@ -38,12 +38,12 @@ public class State {
 		this.liftLowGearTriggerState = liftLowGearTriggerState;
 	}
 
-	public double getIntakeTriggerState() {
-		return intakeTriggerState;
+	public boolean isIntakeBumperState() {
+		return intakeBumperState;
 	}
 
-	public void setIntakeTriggerState(double intakeTriggerState) {
-		this.intakeTriggerState = intakeTriggerState;
+	public void setIntakeBumperState(boolean intakeBumperState) {
+		this.intakeBumperState = intakeBumperState;
 	}
 
 	public double getOuttakeTriggerState() {

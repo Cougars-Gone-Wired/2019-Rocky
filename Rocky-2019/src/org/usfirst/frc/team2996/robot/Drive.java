@@ -38,7 +38,7 @@ public class Drive {
 	
 	public void arcadeDrive(double driveForwardAxis, double driveTurnAxis) {
 		driveForwardAxis = Utility.deadZone(driveForwardAxis * Constants.DRIVE_SPEED) * Constants.DRIVE_FORWARD_CONSTANT;
-		driveTurnAxis = Utility.deadZone(driveTurnAxis * Constants.DRIVE_SPEED) * Constants.DRIVE_TURN_CONSTANT;
+		driveTurnAxis = -Utility.deadZone(driveTurnAxis * Constants.DRIVE_SPEED) * Constants.DRIVE_TURN_CONSTANT;
 		
 		robotDrive.arcadeDrive(driveForwardAxis, driveTurnAxis);
 	}

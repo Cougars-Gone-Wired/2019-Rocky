@@ -32,7 +32,7 @@ public class Lift {
 	LiftStates currentLiftState = LiftStates.NOT_MOVING;
 	
 	public void liftFunctions(double liftAxis) {
-		liftAxis = Utility.deadZone(liftAxis);
+		liftAxis = -Utility.deadZone(liftAxis);
 		switch (currentLiftState) {
 		case NOT_MOVING:
 			if (liftAxis > 0 && !liftSensors.isFwdLimitSwitchClosed()) {

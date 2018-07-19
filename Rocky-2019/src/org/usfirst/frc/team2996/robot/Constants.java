@@ -27,7 +27,7 @@ public class Constants {
 	
 	static final int ARM_SOLENOID_UP_PORT = 0;
 	static final int ARM_SOLENOID_DOWN_PORT = 1;
-	static final int LIFT_GEAR_SOLENOID_PORT = 3;
+	static final int LIFT_GEAR_SOLENOID_PORT = 3; // I messed up
 	static final int DRIVE_GEAR_SOLENOID_PORT = 2;
 	
 	static final double DRIVE_SPEED = 1;

@@ -18,20 +18,20 @@ public class Intake {
 	
 	IntakeStates currentIntakeState = IntakeStates.NOT_MOVING;
 	
-	public void intakeFunctions(boolean intakeTrigger, double outtakeTrigger) {
+	public void intakeFunctions(boolean intakeBumper, double outtakeTrigger) {
 		switch (currentIntakeState) {
 		case NOT_MOVING:
-			if (intakeTrigger && outtakeTrigger < 0.15) {
+			if (intakeBumper && outtakeTrigger < 0.15) {
 				intake();
 				currentIntakeState = IntakeStates.INTAKING;
-			} else if (!intakeTrigger && outtakeTrigger >= 0.15) {
+			} else if (!intakeBumper && outtakeTrigger >= 0.15) {
 				outtake();
 				currentIntakeState = IntakeStates.OUTTAKING;
 			}
 			break;
 		case INTAKING:
 		case OUTTAKING:
-			if (!intakeTrigger && outtakeTrigger < 0.15) {
+			if (!intakeBumper && outtakeTrigger < 0.15) {
 				stop();
 				currentIntakeState = IntakeStates.NOT_MOVING;
 			}

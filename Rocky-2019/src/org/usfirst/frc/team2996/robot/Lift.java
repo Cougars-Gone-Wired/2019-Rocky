@@ -39,12 +39,12 @@ public class Lift {
 				liftMasterMotor.set(liftAxis);
 				currentLiftState = LiftStates.GOING_UP;
 			} else if (liftAxis < 0 && !liftSensors.isRevLimitSwitchClosed()) {
-				liftMasterMotor.set(liftAxis);
+				liftMasterMotor.set(liftAxis * Constants.LIFT_DOWN_CONSTANT);
 				currentLiftState = LiftStates.GOING_DOWN;
 			}
 			break;
 		case GOING_UP:
-			if (liftSensors.isFwdLimitSwitchClosed() || (liftAxis == 0)) {
+			if (liftAxis == 0 || liftSensors.isFwdLimitSwitchClosed()) {
 				liftMasterMotor.set(0);
 				currentLiftState = LiftStates.NOT_MOVING;
 			} else if (liftAxis > 0) {
@@ -52,11 +52,11 @@ public class Lift {
 			}
 			break;
 		case GOING_DOWN:
-			if (liftSensors.isRevLimitSwitchClosed() || (liftAxis == 0)) {
+			if (liftAxis == 0 || liftSensors.isRevLimitSwitchClosed()) {
 				liftMasterMotor.set(0);
 				currentLiftState = LiftStates.NOT_MOVING;
 			} else if (liftAxis < 0) {
-				liftMasterMotor.set(liftAxis * .5); // to slow on the way down
+				liftMasterMotor.set(liftAxis * Constants.LIFT_DOWN_CONSTANT);
 			}
 			break;
 		}

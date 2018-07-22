@@ -30,6 +30,8 @@ public class Constants {
 	static final int LIFT_GEAR_SOLENOID_PORT = 3; // I messed up
 	static final int DRIVE_GEAR_SOLENOID_PORT = 2;
 	
+	static final double LIFT_DOWN_CONSTANT = .5; // to slow it down on the way down
+	
 	static final double DRIVE_SPEED = 1;
 	static final double DRIVE_FORWARD_CONSTANT = .95;
 	static final double DRIVE_TURN_CONSTANT = .75;

@@ -14,7 +14,7 @@ public class ChangeGear {
 		HIGH_GEAR, LOW_GEAR //low gear is false high gear is true
 	}
 	
-	GearStates currentGearState = GearStates.LOW_GEAR;
+	GearStates currentGearState = GearStates.HIGH_GEAR;
 	
 	public void changeGear(boolean highGearBumper, double lowGearTrigger) {
 		switch(currentGearState) {

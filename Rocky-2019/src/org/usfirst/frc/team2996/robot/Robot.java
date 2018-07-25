@@ -35,8 +35,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
-		lift.getLiftChangeGear().setGearState(true);
-		drive.getDriveChangeGear().setGearState(false);
+
 	}
 	
 	@Override

@@ -17,14 +17,15 @@ public class StateRecorder {
 		s.setLiftAxisState(controllers.getLiftAxis());
 		s.setLiftHighGearBumperState(controllers.isLiftHighGearBumper());
 		s.setLiftLowGearTriggerState(controllers.getLiftLowGearTrigger());
-		s.setIntakeBumperState(controllers.isIntakeBumper());
-		s.setOuttakeTriggerState(controllers.getOuttakeTrigger());
+//		s.setIntakeBumperState(controllers.isIntakeBumper());
+//		s.setOuttakeTriggerState(controllers.getOuttakeTrigger());
+		s.setIntakeAxis(controllers.getIntakeAxis());
 		s.setArmButtonOutputState(controllers.isArmButtonOutput());
 		
 		s.setDriveForwardAxisState(controllers.getDriveForwardAxis());
 		s.setDriveTurnAxisState(controllers.getDriveTurnAxis());
-		s.setDriveHighGearBumperState(controllers.isDriveHighGearBumper());
-		s.setDriveLowGearTriggerState(controllers.getDriveLowGearTrigger());
+//		s.setDriveHighGearBumperState(controllers.isDriveHighGearBumper());
+//		s.setDriveLowGearTriggerState(controllers.getDriveLowGearTrigger());
 		
 		states.add(s);
 	}

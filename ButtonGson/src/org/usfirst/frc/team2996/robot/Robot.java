@@ -32,10 +32,13 @@ public class Robot extends IterativeRobot {
 		runner = new StateRunner(this);
 		
 		GsonSmartDash.put();
+		
 	}
 
 	@Override
 	public void autonomousInit() {
+		drive.getDriveChangeGear().setGearState(false);
+		
 		runner.counterInitialize();
 		try {
 			List<State> states = StateReader.read(StateLister.gsonChooser.getSelected());
@@ -52,8 +55,8 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
-		lift.getLiftChangeGear().setGearState(true);
-		drive.getDriveChangeGear().setGearState(false);
+//		lift.getLiftChangeGear().setGearState(true);
+		drive.getDriveChangeGear().setGearState(true);
 		
 		recorder.initialize();
 		runner.counterInitialize();
@@ -64,7 +67,7 @@ public class Robot extends IterativeRobot {
 		controllers.setControllerInputValues();
 		
 		lift.liftFunctions(controllers.getLiftAxis());
-		intake.intakeFunctions(controllers.isIntakeBumper(), controllers.getOuttakeTrigger());
+		intake.intakeFunctions(controllers.getIntakeAxis());
 		arm.armFunctions(controllers.isArmButtonOutput());
 		
 		drive.arcadeDrive(controllers.getDriveForwardAxis(), controllers.getDriveTurnAxis());

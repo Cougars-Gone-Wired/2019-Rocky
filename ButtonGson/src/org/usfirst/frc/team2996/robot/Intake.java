@@ -18,22 +18,51 @@ public class Intake {
 	
 	IntakeStates currentIntakeState = IntakeStates.NOT_MOVING;
 	
-	public void intakeFunctions(boolean intakeTrigger, double outtakeTrigger) {
+//	public void intakeFunctions(boolean intakeBumper, double outtakeTrigger) {
+//		switch (currentIntakeState) {
+//		case NOT_MOVING:
+//			if (intakeBumper && outtakeTrigger < 0.15) {
+//				intake();
+//				currentIntakeState = IntakeStates.INTAKING;
+//			} else if (!intakeBumper && outtakeTrigger >= 0.15) {
+//				outtake();
+//				currentIntakeState = IntakeStates.OUTTAKING;
+//			}
+//			break;
+//		case INTAKING:
+//		case OUTTAKING:
+//			if (!intakeBumper && outtakeTrigger < 0.15) {
+//				stop();
+//				currentIntakeState = IntakeStates.NOT_MOVING;
+//			}
+//			break;
+//		}
+//	}
+	
+	public void intakeFunctions(double intakeAxis) {
 		switch (currentIntakeState) {
 		case NOT_MOVING:
-			if (intakeTrigger && outtakeTrigger < 0.15) {
-				intake();
-				currentIntakeState = IntakeStates.INTAKING;
-			} else if (!intakeTrigger && outtakeTrigger >= 0.15) {
+			if (intakeAxis < -0.2) {
 				outtake();
 				currentIntakeState = IntakeStates.OUTTAKING;
+			} else if (intakeAxis > 0.2) {
+				intake();
+				currentIntakeState = IntakeStates.INTAKING;
 			}
 			break;
 		case INTAKING:
-		case OUTTAKING:
-			if (!intakeTrigger && outtakeTrigger < 0.15) {
+			if (intakeAxis > -0.2 && intakeAxis < 0.2) {
 				stop();
 				currentIntakeState = IntakeStates.NOT_MOVING;
+			} else if (intakeAxis > 0.2) {
+				intake();
+			}
+		case OUTTAKING:
+			if (intakeAxis > -0.2 && intakeAxis < 0.2) {
+				stop();
+				currentIntakeState = IntakeStates.NOT_MOVING;
+			} else if (intakeAxis < -0.2) {
+				outtake();
 			}
 			break;
 		}

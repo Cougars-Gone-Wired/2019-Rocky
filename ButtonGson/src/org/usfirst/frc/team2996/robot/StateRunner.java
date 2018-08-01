@@ -35,13 +35,13 @@ public class StateRunner {
 			State s = states.get(counter);
 
 			lift.liftFunctions(s.getLiftAxisState());
-			intake.intakeFunctions(s.isIntakeBumperState(), s.getOuttakeTriggerState());
+			intake.intakeFunctions(s.getIntakeAxis());
 			arm.armFunctions(s.isArmButtonOutputState());
 			
 			drive.arcadeDrive(s.getDriveForwardAxisState(), s.getDriveTurnAxisState());
 			
 			lift.getLiftChangeGear().changeGear(s.isLiftHighGearBumperState(), s.getLiftLowGearTriggerState());
-			drive.getDriveChangeGear().changeGear(s.isDriveHighGearBumperState(), s.getDriveLowGearTriggerState());
+//			drive.getDriveChangeGear().changeGear(s.isDriveHighGearBumperState(), s.getDriveLowGearTriggerState());
 			
 			counter++;
 		}

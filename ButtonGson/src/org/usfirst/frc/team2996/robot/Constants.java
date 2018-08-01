@@ -6,8 +6,9 @@ public class Constants {
 	static final int LIFT_AXIS = 1;
 	static final int LIFT_HIGH_GEAR_BUMPER = 6;
 	static final int LIFT_LOW_GEAR_TRIGGER = 3;
-	static final int INTAKE_BUMPER = 5;
-	static final int OUTTAKE_TRIGGER = 2;
+//	static final int INTAKE_BUMPER = 5;
+//	static final int OUTTAKE_TRIGGER = 2;
+	static final int INTAKE_AXIS = 5;
 	static final int ARM_BUTTON = 1;
 	
 	static final int MOBILITY_CONTROLLER_PORT = 1;
@@ -27,8 +28,10 @@ public class Constants {
 	
 	static final int ARM_SOLENOID_UP_PORT = 0;
 	static final int ARM_SOLENOID_DOWN_PORT = 1;
-	static final int LIFT_GEAR_SOLENOID_PORT = 2;
-	static final int DRIVE_GEAR_SOLENOID_PORT = 3;
+	static final int LIFT_GEAR_SOLENOID_PORT = 3; // I messed up
+	static final int DRIVE_GEAR_SOLENOID_PORT = 2;
+	
+	static final double LIFT_DOWN_CONSTANT = .5; // to slow it down on the way down
 	
 	static final double DRIVE_SPEED = 1;
 	static final double DRIVE_FORWARD_CONSTANT = .95;

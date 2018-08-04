@@ -8,7 +8,9 @@ public class State {
 //	private boolean intakeBumperState;
 //	private double outtakeTriggerState;
 	private double intakeAxis;
-	private boolean armButtonOutputState;
+//	private boolean armButtonOutputState;
+	private boolean armUpBumperState;
+	private double armDownTriggerState;
 
 	private double driveForwardAxisState;
 	private double driveTurnAxisState;
@@ -54,11 +56,7 @@ public class State {
 //	public void setOuttakeTriggerState(double outtakeTriggerState) {
 //		this.outtakeTriggerState = outtakeTriggerState;
 //	}
-
-	public boolean isArmButtonOutputState() {
-		return armButtonOutputState;
-	}
-
+	
 	public double getIntakeAxis() {
 		return intakeAxis;
 	}
@@ -67,14 +65,34 @@ public class State {
 		this.intakeAxis = intakeAxis;
 	}
 
-	public void setArmButtonOutputState(boolean armButtonOutputState) {
-		this.armButtonOutputState = armButtonOutputState;
+//	public boolean isArmButtonOutputState() {
+//		return armButtonOutputState;
+//	}
+//
+//	public void setArmButtonOutputState(boolean armButtonOutputState) {
+//		this.armButtonOutputState = armButtonOutputState;
+//	}
+	
+	public boolean isArmUpBumperState() {
+		return armUpBumperState;
 	}
 
+	public void setArmUpBumperState(boolean armUpBumperState) {
+		this.armUpBumperState = armUpBumperState;
+	}
+
+	public double getArmDownTriggerState() {
+		return armDownTriggerState;
+	}
+
+	public void setArmDownTriggerState(double armDownTriggerState) {
+		this.armDownTriggerState = armDownTriggerState;
+	}
+	
 	public double getDriveForwardAxisState() {
 		return driveForwardAxisState;
 	}
-
+	
 	public void setDriveForwardAxisState(double driveForwardAxisState) {
 		this.driveForwardAxisState = driveForwardAxisState;
 	}

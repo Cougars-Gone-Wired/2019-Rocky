@@ -20,7 +20,9 @@ public class StateRecorder {
 //		s.setIntakeBumperState(controllers.isIntakeBumper());
 //		s.setOuttakeTriggerState(controllers.getOuttakeTrigger());
 		s.setIntakeAxis(controllers.getIntakeAxis());
-		s.setArmButtonOutputState(controllers.isArmButtonOutput());
+//		s.setArmButtonOutputState(controllers.isArmButtonOutput());
+		s.setArmUpBumperState(controllers.isArmUpBumper());
+		s.setArmDownTriggerState(controllers.getArmDownTrigger());
 		
 		s.setDriveForwardAxisState(controllers.getDriveForwardAxis());
 		s.setDriveTurnAxisState(controllers.getDriveTurnAxis());

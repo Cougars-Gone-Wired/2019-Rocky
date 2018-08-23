@@ -16,23 +16,6 @@ public class Arm {
 	
 	ArmStates currentArmState = ArmStates.UP;
 	
-//	public void armFunctions(boolean armButtonOutput) {
-//		switch (currentArmState) {
-//		case UP:
-//			if (!armButtonOutput) {
-//				armSolenoid.set(DoubleSolenoid.Value.kReverse);
-//				currentArmState = ArmStates.DOWN;
-//			}
-//			break;
-//		case DOWN:
-//			if (armButtonOutput) {
-//				armSolenoid.set(DoubleSolenoid.Value.kForward);
-//				currentArmState = ArmStates.UP;
-//			}
-//			break;
-//		}
-//	}
-	
 	public void armFunctions(boolean armUpBumper, double armDownTrigger) {
 		switch(currentArmState) {
 		case UP:

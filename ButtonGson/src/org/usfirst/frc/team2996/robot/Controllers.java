@@ -8,11 +8,7 @@ public class Controllers {
 	private double liftAxis;
 	private boolean liftHighGearBumper;
 	private double liftLowGearTrigger;
-//	private boolean intakeBumper;
-//	private double outtakeTrigger;
 	private double intakeAxis;
-//	private Toggle armButton;
-//	private boolean armButtonOutput;
 	private boolean armUpBumper;
 	private double armDownTrigger;
 	
@@ -24,8 +20,6 @@ public class Controllers {
 	
 	public Controllers() {
 		manipulatorController = new Joystick(Constants.MANIPULATOR_CONTROLLER_PORT);
-//		armButton = new Toggle(manipulatorController, Constants.ARM_BUTTON);
-		
 		mobilityController = new Joystick(Constants.MOBILITY_CONTROLLER_PORT);
 	}
 	
@@ -33,10 +27,7 @@ public class Controllers {
 		liftAxis = manipulatorController.getRawAxis(Constants.LIFT_AXIS);
 		liftHighGearBumper = manipulatorController.getRawButton(Constants.LIFT_HIGH_GEAR_BUMPER);
 		liftLowGearTrigger = manipulatorController.getRawAxis(Constants.LIFT_LOW_GEAR_TRIGGER);
-//		intakeBumper = manipulatorController.getRawButton(Constants.INTAKE_BUMPER);
-//		outtakeTrigger = manipulatorController.getRawAxis(Constants.OUTTAKE_TRIGGER);
 		intakeAxis = manipulatorController.getRawAxis(Constants.INTAKE_AXIS);
-//		armButtonOutput = armButton.toggle();
 		armUpBumper = manipulatorController.getRawButton(Constants.ARM_UP_BUMPER);
 		armDownTrigger = manipulatorController.getRawAxis(Constants.ARM_DOWN_TRIGGER);
 		
@@ -57,22 +48,10 @@ public class Controllers {
 	public double getLiftLowGearTrigger() {
 		return liftLowGearTrigger;
 	}
-
-//	public boolean isIntakeBumper() {
-//		return intakeBumper;
-//	}
-//
-//	public double getOuttakeTrigger() {
-//		return outtakeTrigger;
-//	}
 	
 	public double getIntakeAxis() {
 		return intakeAxis;
 	}
-
-//	public boolean isArmButtonOutput() {
-//		return armButtonOutput;
-//	}
 
 	public boolean isArmUpBumper() {
 		return armUpBumper;

@@ -6,10 +6,7 @@ public class Constants {
 	static final int LIFT_AXIS = 1;
 	static final int LIFT_HIGH_GEAR_BUMPER = 5;
 	static final int LIFT_LOW_GEAR_TRIGGER = 2;
-//	static final int INTAKE_BUMPER = 5;
-//	static final int OUTTAKE_TRIGGER = 2;
 	static final int INTAKE_AXIS = 5;
-//	static final int ARM_BUTTON = 1;
 	static final int ARM_UP_BUMPER = 6;
 	static final int ARM_DOWN_TRIGGER = 3;
 	

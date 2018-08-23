@@ -41,7 +41,6 @@ public class StateRunner {
 			drive.arcadeDrive(s.getDriveForwardAxisState(), s.getDriveTurnAxisState());
 			
 			lift.getLiftChangeGear().changeGear(s.isLiftHighGearBumperState(), s.getLiftLowGearTriggerState());
-//			drive.getDriveChangeGear().changeGear(s.isDriveHighGearBumperState(), s.getDriveLowGearTriggerState());
 			
 			counter++;
 		}

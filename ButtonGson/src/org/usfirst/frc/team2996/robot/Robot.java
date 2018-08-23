@@ -68,7 +68,6 @@ public class Robot extends IterativeRobot {
 		lift.liftFunctions(controllers.getLiftAxis());
 		intake.intakeFunctions(controllers.getIntakeAxis());
 		arm.armFunctions(controllers.isArmUpBumper(), controllers.getArmDownTrigger());
-
 		
 		drive.arcadeDrive(controllers.getDriveForwardAxis(), controllers.getDriveTurnAxis());
 		

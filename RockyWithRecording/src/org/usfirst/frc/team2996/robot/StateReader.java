@@ -9,6 +9,8 @@ import com.google.gson.reflect.TypeToken;
 
 public class StateReader {
 
+	// reads the chosen gson file and returns a list of all the states stored in the file
+	
 	public static List<State> read(String fileName) throws Exception {
 		System.out.println(fileName);
 

@@ -2,6 +2,7 @@ package org.usfirst.frc.team2996.robot;
 
 public class State {
 
+	// variables to hold the states of all buttons and axes
 	private double liftAxisState;
 	private boolean liftHighGearBumperState;
 	private double liftLowGearTriggerState;
@@ -12,6 +13,7 @@ public class State {
 	private double driveForwardAxisState;
 	private double driveTurnAxisState;
 
+	// getters and setters for all variables
 	public double getLiftAxisState() {
 		return liftAxisState;
 	}

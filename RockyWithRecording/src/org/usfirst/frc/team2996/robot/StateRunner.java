@@ -30,6 +30,7 @@ public class StateRunner {
 		this.states = states;
 	}
 
+	// calls subsystem methods using stored button and axes states as parameters
 	public void run() {
 		if (counter < states.size()) {
 			State s = states.get(counter);

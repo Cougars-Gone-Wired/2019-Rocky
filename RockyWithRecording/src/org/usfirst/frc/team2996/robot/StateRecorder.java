@@ -11,6 +11,7 @@ public class StateRecorder {
 		states = new ArrayList<>();
 	}
 	
+	// stores states of buttons and axis during teleop in state variables in a list
 	public void record(Controllers controllers) {
 		State s = new State();
 

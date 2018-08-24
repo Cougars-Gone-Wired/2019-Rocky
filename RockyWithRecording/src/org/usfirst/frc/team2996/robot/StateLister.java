@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class StateLister {
 
+	// lists all gson files stored on the roborio and make them available as options on the SmartDashboard
+	
 	static SendableChooser<String> gsonChooser = new SendableChooser<>();
 
 	public static List<String> getStateNames() {

@@ -31,6 +31,7 @@ public class Drive {
 		rightMotors = new SpeedControllerGroup(frontRightMotor, rearRightMotor);
 		
 		robotDrive = new DifferentialDrive(leftMotors, rightMotors);
+		robotDrive.setSafetyEnabled(false);
 		
 		driveGearSolenoid = new Solenoid(Constants.DRIVE_GEAR_SOLENOID_PORT);
 		driveChangeGear = new ChangeGear(driveGearSolenoid);

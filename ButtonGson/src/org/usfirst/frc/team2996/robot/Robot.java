@@ -16,7 +16,6 @@ public class Robot extends IterativeRobot {
 	private Drive drive;
 	
 	private StateRecorder recorder;
-//	private StateRunner runner;
 	
 	private AutoPicker autoPicker;
 	
@@ -31,31 +30,19 @@ public class Robot extends IterativeRobot {
 		drive = new Drive();
 		
 		recorder = new StateRecorder();
-//		runner = new StateRunner(this);
 		
 		autoPicker = new AutoPicker(this);
-		
-		GsonSmartDash.put();
 	}
 
 	@Override
 	public void autonomousInit() {
 		drive.getDriveChangeGear().setGearState(false);
 		
-//		runner.counterInitialize();
-//		try {
-//			List<State> states = StateReader.read(StateLister.gsonChooser.getSelected());
-//			runner.setStates(states); 
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-		
 		autoPicker.pickAuto();
 	}
 
 	@Override
 	public void autonomousPeriodic() {
-//		runner.run();
 		autoPicker.runAuto();
 	}
 
@@ -64,7 +51,6 @@ public class Robot extends IterativeRobot {
 		drive.getDriveChangeGear().setGearState(true);
 		
 		recorder.initialize();
-//		runner.counterInitialize();
 	}
 	
 	@Override

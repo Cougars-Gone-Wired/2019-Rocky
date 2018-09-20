@@ -8,6 +8,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutoPicker {
 	
+	private static final String RECORDING = "Recording";
+	private static final String RECORDING_TEST = "Recording Test";
+	private static final String DEAD_RECKONING = "Dead Reckoning";
+	
 	private static final String MIDDLE = "Middle";
 	private static final String LEFT = "Left";
 	private static final String RIGHT = "Right";
@@ -20,9 +24,11 @@ public class AutoPicker {
 	private static final String LRL = "LRL";
 	private static final String RLR = "RLR";
 	
+	private SendableChooser<String> autoType = new SendableChooser<>();
 	private SendableChooser<String> position = new SendableChooser<>();
 	private SendableChooser<String> priority = new SendableChooser<>();
 	
+	String selectedAutoType;
 	String currentPosition;
 	String currentPriority;
 	String fieldConfiguration;
@@ -37,22 +43,32 @@ public class AutoPicker {
 	public AutoStates autoChanger;
 	
 	private StateRunner runner;
+	private RecordingAutoTester recordingAutoTester;
+	private DeadReckoningAutos deadReckoningAutos;
 	
 	public AutoPicker(Robot robot) {
-		position.addDefault("Middle", MIDDLE); // sends auto inputs to the chooser
+		autoType.addObject("Recording", RECORDING);
+		autoType.addObject("Recording Test", RECORDING_TEST);
+		autoType.addObject("Dead Reckoning", DEAD_RECKONING);
+		
+		position.addDefault("Middle", MIDDLE); 
 		position.addObject("Left", LEFT);
 		position.addObject("Right", RIGHT);
 
 		priority.addObject("Switch", SWITCH);
 		priority.addObject("Scale", SCALE);
 		
+		SmartDashboard.putData("Auto Type", autoType);
 		SmartDashboard.putData("Robot Position", position);
 		SmartDashboard.putData("Auto Priority", priority);
 		
 		runner = new StateRunner(robot);
+		recordingAutoTester = new RecordingAutoTester(robot);
+		deadReckoningAutos = new DeadReckoningAutos(robot);
 	}
 	
 	public void pickAuto() {
+		selectedAutoType = autoType.getSelected();
 		currentPosition = position.getSelected();
 		currentPriority = priority.getSelected();
 		fieldConfiguration = DriverStation.getInstance().getGameSpecificMessage();
@@ -64,13 +80,13 @@ public class AutoPicker {
 		switch(currentPosition) {
 		case MIDDLE:
 			switch(fieldConfiguration) {
-			case RRR:
-			case RLR:
-				autoChanger = AutoStates.MIDDLE_SWITCH_RIGHT;
-				break;
 			case LLL:
 			case LRL:
 				autoChanger = AutoStates.MIDDLE_SWITCH_LEFT;
+				break;
+			case RRR:
+			case RLR:
+				autoChanger = AutoStates.MIDDLE_SWITCH_RIGHT;
 				break;
 			default:
 				autoChanger = AutoStates.MIDDLE_CROSS_LINE;
@@ -96,13 +112,13 @@ public class AutoPicker {
 				break;
 			case SCALE:
 				switch(fieldConfiguration) {
-				case RRR:
-				case LRL:
-					autoChanger = AutoStates.LEFT_SCALE_RIGHT;
-					break;
 				case RLR:
 				case LLL:
 					autoChanger = AutoStates.LEFT_SCALE_LEFT;
+					break;
+				case RRR:
+				case LRL:
+					autoChanger = AutoStates.LEFT_SCALE_RIGHT;
 					break;
 				default:
 					autoChanger = AutoStates.MIDDLE_CROSS_LINE;
@@ -133,13 +149,13 @@ public class AutoPicker {
 				break;
 			case SCALE:
 				switch(fieldConfiguration) {
-				case RRR:
-				case LRL:
-					autoChanger = AutoStates.RIGHT_SCALE_RIGHT;
-					break;
 				case RLR:
 				case LLL:
 					autoChanger = AutoStates.RIGHT_SCALE_LEFT;
+					break;
+				case RRR:
+				case LRL:
+					autoChanger = AutoStates.RIGHT_SCALE_RIGHT;
 					break;
 				default:
 					autoChanger = AutoStates.MIDDLE_CROSS_LINE;
@@ -156,59 +172,113 @@ public class AutoPicker {
 			break;
 		}
 		
-		switch(autoChanger) {
-		case MIDDLE_CROSS_LINE:
-			fileName = "default";
+		switch(selectedAutoType) {
+		case RECORDING:
+			switch(autoChanger) {
+			case MIDDLE_CROSS_LINE:
+				fileName = "default";
+				break;
+			case MIDDLE_SWITCH_LEFT:
+				fileName = "default";
+				break;
+			case MIDDLE_SWITCH_RIGHT:
+				fileName = "default";
+				break;
+			case LEFT_CROSS_LINE:
+				fileName = "default";
+				break;
+			case LEFT_SWITCH:
+				fileName = "default";
+				break;
+			case LEFT_SCALE_LEFT:
+				fileName = "default";
+				break;
+			case LEFT_SCALE_RIGHT:
+				fileName = "default";
+				break;
+			case RIGHT_CROSS_LINE:
+				fileName = "default";
+				break;
+			case RIGHT_SWITCH:
+				fileName = "default";
+				break;
+			case RIGHT_SCALE_LEFT:
+				fileName = "default";
+				break;
+			case RIGHT_SCALE_RIGHT:
+				fileName = "default";
+				break;
+			case DO_NOTHING:
+				fileName = "default";
+				break;
+			}
+			runner.counterInitialize();
+			try {
+				List<State> states = StateReader.read("/home/lvuser/gsonFiles/" + fileName);
+				runner.setStates(states); 
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			break;
-		case MIDDLE_SWITCH_RIGHT:
-			fileName = "default";
+		case RECORDING_TEST:
+			recordingAutoTester.getStates();
 			break;
-		case MIDDLE_SWITCH_LEFT:
-			fileName = "default";
+		case DEAD_RECKONING:
+			deadReckoningAutos.reset();
 			break;
-		case LEFT_CROSS_LINE:
-			fileName = "default";
-			break;
-		case LEFT_SWITCH:
-			fileName = "default";
-			break;
-		case LEFT_SCALE_LEFT:
-			fileName = "default";
-			break;
-		case LEFT_SCALE_RIGHT:
-			fileName = "default";
-			break;
-		case RIGHT_CROSS_LINE:
-			fileName = "default";
-			break;
-		case RIGHT_SWITCH:
-			fileName = "default";
-			break;
-		case RIGHT_SCALE_RIGHT:
-			fileName = "default";
-			break;
-		case RIGHT_SCALE_LEFT:
-			fileName = "default";
-			break;
-		case DO_NOTHING:
-			fileName = "default";
-			break;
-		}
-		
-		runner.counterInitialize();
-		try {
-			List<State> states = StateReader.read("/home/lvuser/gsonFiles/" + fileName);
-			runner.setStates(states); 
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 	
 	public void runAuto() {
-		runner.run();
-	}
-
-	public StateRunner getRunner() {
-		return runner;
+		selectedAutoType = autoType.getSelected();
+		
+		switch(selectedAutoType) {
+		case RECORDING:
+			runner.run();
+			break;
+		case RECORDING_TEST:
+			recordingAutoTester.runAuto();
+			break;
+		case DEAD_RECKONING:
+			deadReckoningAutos.setEncoderValues();
+			switch(autoChanger) {
+			case MIDDLE_CROSS_LINE:
+				deadReckoningAutos.middleCrossLine();
+				break;
+			case MIDDLE_SWITCH_LEFT:
+				deadReckoningAutos.middleSwitchLeftBack();
+				break;
+			case MIDDLE_SWITCH_RIGHT:
+				deadReckoningAutos.middleSwitchRightBack();
+				break;
+			case LEFT_CROSS_LINE:
+				deadReckoningAutos.leftCrossLine();
+				break;
+			case LEFT_SWITCH:
+				deadReckoningAutos.leftSwitch();
+				break;
+			case LEFT_SCALE_LEFT:
+				deadReckoningAutos.leftCrossLine();
+				break;
+			case LEFT_SCALE_RIGHT:
+				deadReckoningAutos.leftCrossLine();
+				break;
+			case RIGHT_CROSS_LINE:
+				deadReckoningAutos.rightCrossLine();
+				break;
+			case RIGHT_SWITCH:
+				deadReckoningAutos.rightSwitch();
+				break;
+			case RIGHT_SCALE_LEFT:
+				deadReckoningAutos.rightCrossLine();
+				break;
+			case RIGHT_SCALE_RIGHT:
+				deadReckoningAutos.rightCrossLine();
+				break;
+			case DO_NOTHING:
+				break;
+			}
+			break;
+		}
 	}
 }

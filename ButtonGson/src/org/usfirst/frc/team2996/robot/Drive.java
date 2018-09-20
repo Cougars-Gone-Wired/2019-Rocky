@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2996.robot;
 
+import com.ctre.phoenix.motorcontrol.SensorCollection;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Solenoid;
@@ -11,10 +12,12 @@ public class Drive {
 	private WPI_TalonSRX frontLeftMotor;
 	private WPI_TalonSRX rearLeftMotor;
 	private SpeedControllerGroup leftMotors;
+	private SensorCollection frontLeftSensors;
 	
 	private WPI_TalonSRX frontRightMotor;
 	private WPI_TalonSRX rearRightMotor;
 	private SpeedControllerGroup rightMotors;
+	private SensorCollection frontRightSensors;
 	
 	private DifferentialDrive robotDrive;
 	
@@ -46,5 +49,17 @@ public class Drive {
 
 	public ChangeGear getDriveChangeGear() {
 		return driveChangeGear;
+	}
+
+	public SensorCollection getFrontLeftSensors() {
+		return frontLeftSensors;
+	}
+
+	public SensorCollection getFrontRightSensors() {
+		return frontRightSensors;
+	}
+
+	public DifferentialDrive getRobotDrive() {
+		return robotDrive;
 	}
 }

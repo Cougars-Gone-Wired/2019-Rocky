@@ -28,10 +28,12 @@ public class Drive {
 		frontLeftMotor = new WPI_TalonSRX(Constants.FRONT_LEFT_MOTOR_ID);
 		rearLeftMotor = new WPI_TalonSRX(Constants.REAR_LEFT_MOTOR_ID);
 		leftMotors = new SpeedControllerGroup(frontLeftMotor, rearLeftMotor);
+		frontLeftSensors = new SensorCollection(frontLeftMotor);
 		
 		frontRightMotor = new WPI_TalonSRX(Constants.FRONT_RIGHT_MOTOR_ID);
 		rearRightMotor = new WPI_TalonSRX(Constants.REAR_RIGHT_MOTOR_ID);
 		rightMotors = new SpeedControllerGroup(frontRightMotor, rearRightMotor);
+		frontRightSensors = new SensorCollection(frontRightMotor);
 		
 		robotDrive = new DifferentialDrive(leftMotors, rightMotors);
 		robotDrive.setSafetyEnabled(false);

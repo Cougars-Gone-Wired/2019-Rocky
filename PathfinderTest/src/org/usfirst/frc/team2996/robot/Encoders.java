@@ -4,17 +4,17 @@ import com.ctre.phoenix.motorcontrol.SensorCollection;
 
 public class Encoders {
 
+	public SensorCollection leftSensors;
+	public SensorCollection rightSensors;
+	
 	double WHEEL_RADIUS = 3;
 	double CIRCUMFRENCE = 2 * Math.PI * WHEEL_RADIUS;
 	double PULSES_PER_REVOLUTION = 1440;
 	double distancePerPulse = CIRCUMFRENCE / PULSES_PER_REVOLUTION;
 	
-	private SensorCollection leftSensors;
-	private SensorCollection rightSensors;
-	
 	public Encoders(Robot robot) {
-		leftSensors = robot.getDrive().getLeftSensors();
-		rightSensors = robot.getDrive().getRightSensors();
+		leftSensors = robot.getLeftSensors();
+		rightSensors = robot.getRightSensors();
 	}
 	
 	/**
@@ -29,7 +29,7 @@ public class Encoders {
 	public int getRightCount() {
 		return rightSensors.getQuadraturePosition();
 	}
-	
+
 	/**
 	 * Convert the count of the encoders to inches
 	 * 
@@ -42,7 +42,7 @@ public class Encoders {
 	public double getRightDistanceInches() {
 		return rightSensors.getQuadraturePosition() * distancePerPulse;
 	}
-	
+
 	/**
 	 * Convert the count of the encoders to feet
 	 * 
@@ -55,7 +55,7 @@ public class Encoders {
 	public double getRightDistanceFeet() {
 		return (rightSensors.getQuadraturePosition() * distancePerPulse) / 12;
 	}
-	
+
 	/**
 	 * Reset methods
 	 * 
